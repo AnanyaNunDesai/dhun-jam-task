@@ -56,6 +56,43 @@ function AdminDashboard() {
         Legend
     )
 
+    const adjustedGraph = {
+        id: 'adjustedGraph',
+        beforeLayout: (chart, args, opts) => {
+          const {
+            display,
+            font
+          } = opts
+          if (!display) {
+            return
+          }
+      
+          const {
+            ctx
+          } = chart
+          ctx.font = font || '40px "Poppins", sans-serif'
+      
+          const {
+            width
+          } = ctx.measureText(opts.text)
+          chart.options.layout.padding.left = width * 2.5
+    
+        },
+        afterDraw: (chart, args, opts) => {
+            const { font, text, color } = opts
+            const { ctx,
+                chartArea: {
+                    top,
+                    bottom
+                }
+            } = chart
+
+            ctx.fillStyle = color || "#FFFFFF"
+            ctx.font = font || '40px "Poppins",  sans-serif'
+            ctx.fillText(text, 0, (top + bottom) / 8)
+        }
+      }
+
     const options = {
         responsive: true,
         plugins: {
@@ -63,9 +100,11 @@ function AdminDashboard() {
                 position: "top",
                 display: false
             },
-            title: {
-                display: false,
-            },
+            adjustedGraph: {
+                display: true,
+                text: "₹",
+                color: "#FFFFFF"
+            }
         },
         scales: {
             x: {
@@ -82,15 +121,6 @@ function AdminDashboard() {
                     drawOnChartArea: false,
                     lineWidth: 1,
                     drawBorder: true
-                },
-                title: {
-                    display: true,
-                    text: "₹",
-                    align: "end",
-                    font: {
-                        size: 40
-                    },
-                    color: "#FFFFFF"
                 },
                 ticks: {
                     display: false
@@ -205,6 +235,7 @@ function AdminDashboard() {
                 {chargeOnRequest ? <div className="w-[600px] h-[600px] mt-10 mb-0">
                     <Bar
                         options={options}
+                        plugins={[adjustedGraph]}
                         data={{
                             labels: labels,
                             datasets: [
@@ -221,7 +252,7 @@ function AdminDashboard() {
                         className="text-white m-0 p-0"
                     />
                 </div> : null}
-                <div className="">
+                <div>
                     <button onClick={storeAdminDetails} disabled={checkIfSaveDisabled()} type="button" className="btn bg-buttonColor mt-0 p-2 w-[600px] rounded-xl font-bold disabled:border-disabled disabled:text-disabled">
                         Save
                     </button>

@@ -5,9 +5,11 @@ module.exports = {
     ],
     theme: {
         fontFamily: {
-            sans: [
-                "Poppins"
-            ]
+            figtree: ["Figtree", "sans-serif"],
+            lato: ["Lato", "sans-serif"],
+            montserrat: ["Montserrat"],
+            "open-sans": ["Open Sans", "sans-serif"],
+            poppins: ["Poppins", "sans-serif"],
         },
         extend: {
             colors: {

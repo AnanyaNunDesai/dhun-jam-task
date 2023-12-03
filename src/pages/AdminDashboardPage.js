@@ -10,7 +10,7 @@ function AdminDashboard() {
     const [chargeOnRequest, setChargeOnRequest] = useState(false)
     const [customSongAmt, setCustomSongAmt] = useState(0)
     const [regularSongAmt, setRegularSongAmt] = useState([0, 0, 0, 0])
-    
+
     ChartJS.register(
         CategoryScale,
         LinearScale,
@@ -28,7 +28,7 @@ function AdminDashboard() {
                 display: false
             },
             title: {
-            display: false,
+                display: false,
             },
         },
         scales: {
@@ -40,7 +40,7 @@ function AdminDashboard() {
             }
         }
     }
-      
+
     const labels = [
         'Custom',
         'Category 1',
@@ -50,7 +50,7 @@ function AdminDashboard() {
     ]
 
     // TODO: Implement PUT call for storing data 
-    
+
     useEffect(() => {
         const fetchAdminDetails = async () => {
             try {
@@ -69,7 +69,7 @@ function AdminDashboard() {
                     setRestoBarLocation(data['location'])
                     setChargeOnRequest(data['charge_customers'])
                     setCustomSongAmt(data['amount']['category_6'])
-                    
+
                     const newRegularSongAmt = [
                         data['amount']['category_7'],
                         data['amount']['category_8'],
@@ -95,29 +95,32 @@ function AdminDashboard() {
 
     return (
         <div>
+            <style>
+                @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+            </style>
             <div className="h-screen m-10 flex flex-col justify-start items-center">
-                <h1>{restoBarName}, {restoBarLocation} on Dhun Jam</h1>
+                <h1 className="font-poppins font-bold">{restoBarName}, {restoBarLocation} on Dhun Jam</h1>
                 <div className="m-8 w-[600px] flex flex-row justify-center items-center gap-x-12">
                     <p>Do you want to charge your customers for requesting songs?</p>
                     <div className="flex items-center gap-x-3">
-                    <input
-                        id="charge-on-request1"
-                        type="radio"
-                        name="charge-on-request"
-                        checked={chargeOnRequest}
-                        onChange={() => setChargeOnRequest(true)}
-                        className="w-4 h-4 text-green-500 border-green-500 focus:ring-0 focus:border-green-500"
-                    />
-                    <label htmlFor="charge-on-request1">Yes</label>
-                    <input
-                        id="charge-on-request2"
-                        type="radio"
-                        name="charge-on-request"
-                        checked={!chargeOnRequest}
-                        onChange={() => setChargeOnRequest(false)}
-                        className="w-4 h-4 text-green-500 border-green-500 focus:ring-0 focus:border-green-500"
-                    />
-                    <label htmlFor="charge-on-request2">No</label>
+                        <input
+                            id="charge-on-request1"
+                            type="radio"
+                            name="charge-on-request"
+                            checked={chargeOnRequest}
+                            onChange={() => setChargeOnRequest(true)}
+                            className="w-4 h-4 accent-violet-500 text-violet-500 border-violet-500 focus:ring-0 focus:border-violet-500"
+                        />
+                        <label htmlFor="charge-on-request1">Yes</label>
+                        <input
+                            id="charge-on-request2"
+                            type="radio"
+                            name="charge-on-request"
+                            checked={!chargeOnRequest}
+                            onChange={() => setChargeOnRequest(false)}
+                            className="w-4 h-4 accent-violet-500 text-violet-500 border-violet-500 focus:ring-0 focus:border-violet-500"
+                        />
+                        <label htmlFor="charge-on-request2">No</label>
                     </div>
                 </div>
                 <div className="m-8 w-[600px] flex flex-row justify-between items-center gap-x-12">
@@ -133,7 +136,7 @@ function AdminDashboard() {
                         <input className="h-10 w-[60px] bg-black focus:outline-none p-2 rounded-xl border border-white placeholder-white" value={regularSongAmt[3]} onChange={(e) => regularSongAmtChanged(3, e.target.value)} />
                     </div>
                 </div>
-                { chargeOnRequest ? <Bar
+                {chargeOnRequest ? <Bar
                     width="10%"
                     height="10%"
                     options={options}
@@ -147,9 +150,9 @@ function AdminDashboard() {
                                 backgroundColor: '#F0C3F1',
                             }
                         })
-                      }}
-                /> : null }
-                <button onClick={() => {}} disabled={false} type="button" className="btn bg-buttonColor p-2 w-[600px] rounded-xl font-bold mt-3">
+                    }}
+                /> : null}
+                <button onClick={() => { }} disabled={false} type="button" className="btn bg-buttonColor p-2 w-[600px] rounded-xl font-bold mt-3">
                     Save
                 </button>
             </div>

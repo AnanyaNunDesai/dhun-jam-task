@@ -218,12 +218,14 @@ function AdminDashboard() {
                                 },
                             ],
                         }}
-                        className="text-white m-0"
+                        className="text-white m-0 p-0"
                     />
                 </div> : null}
-                <button onClick={storeAdminDetails} disabled={checkIfSaveDisabled()} type="button" className="btn bg-buttonColor mt-0 p-2 w-[600px] rounded-xl font-bold disabled:border-disabled disabled:text-disabled">
-                    Save
-                </button>
+                <div className="">
+                    <button onClick={storeAdminDetails} disabled={checkIfSaveDisabled()} type="button" className="btn bg-buttonColor mt-0 p-2 w-[600px] rounded-xl font-bold disabled:border-disabled disabled:text-disabled">
+                        Save
+                    </button>
+                </div>
             </div>
         </div>
     )

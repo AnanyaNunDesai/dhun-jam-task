@@ -82,7 +82,7 @@ function Login() {
             onClick={attemptLogin}
             disabled={loading}
             type="button"
-            className="font-poppins font-semibold btn bg-buttonColor p-5 w-[600px] rounded-xl mt-10"
+            className="font-poppins font-semibold btn bg-buttonColor p-5 w-[600px] rounded-xl mt-10 active:border active:border-[#F0C3F1]"
           >
             Sign in
           </button>

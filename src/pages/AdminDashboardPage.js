@@ -253,7 +253,7 @@ function AdminDashboard() {
                     />
                 </div> : null}
                 <div>
-                    <button onClick={storeAdminDetails} disabled={checkIfSaveDisabled()} type="button" className="btn bg-buttonColor mt-0 p-2 w-[600px] rounded-xl font-bold disabled:border-disabled disabled:text-disabled">
+                    <button onClick={storeAdminDetails} disabled={checkIfSaveDisabled()} type="button" className="btn bg-buttonColor mt-0 p-2 w-[600px] rounded-xl font-bold disabled:border-disabled disabled:text-disabled active:border active:border-[#F0C3F1]">
                         Save
                     </button>
                 </div>
